@@ -1,0 +1,9 @@
+syntax = "proto3";
+package netcode;
+option go_package = "upgraded-potato/pkg/netcode";
+
+//go:generate protoc --go_out=. message.proto
+
+message Message {
+  string text = 1;
+}
