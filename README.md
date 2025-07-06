@@ -22,3 +22,8 @@ All features should be implemented using a test-driven workflow:
 4. **Refactor** while keeping tests green.
 
 This cycle keeps the library reliable and ensures new changes are covered by automated tests.
+
+## Design Documents
+
+- [Lobby System Design](docs/lobby_system_design.md)
+
