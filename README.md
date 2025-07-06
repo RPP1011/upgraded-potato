@@ -91,3 +91,8 @@ If you prefer uploading results directly from your own environment, you can use 
    ```
    Replace `<your-token>` with the API token from your TestReporter account.
    The CLI sends the test results to your project so they appear in the TestReporter dashboard.
+
+## Design Documents
+
+- [Lobby System Design](docs/lobby_system_design.md)
+
