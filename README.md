@@ -9,6 +9,8 @@ This project follows a test-driven workflow. Run tests using the `Makefile`:
 ```sh
 make test
 ```
+`make test` will automatically regenerate protobuf code via `go generate` before
+running the Go tests.
 
 Tests will also run automatically in GitHub Actions on each push or pull request.
 
