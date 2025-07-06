@@ -22,3 +22,14 @@ All features should be implemented using a test-driven workflow:
 4. **Refactor** while keeping tests green.
 
 This cycle keeps the library reliable and ensures new changes are covered by automated tests.
+
+## Latest CI Test Suite
+
+The latest [GitHub Actions run](https://github.com/RPP1011/upgraded-potato/actions/runs/16103034375)
+(run number `6`) completed successfully against commit
+`1690026e33b729876a82eb0de58c9adcf62e2d27` on `2025-07-06`.
+Test execution output:
+
+```text
+ok      upgraded-potato/pkg/netcode     0.056s
+```
