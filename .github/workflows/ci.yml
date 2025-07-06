@@ -6,6 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y protobuf-compiler
       - run: go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.36.0
       - run: go generate ./...
       - run: go test -json ./... > report.json
