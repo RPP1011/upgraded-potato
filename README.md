@@ -22,3 +22,56 @@ All features should be implemented using a test-driven workflow:
 4. **Refactor** while keeping tests green.
 
 This cycle keeps the library reliable and ensures new changes are covered by automated tests.
+
+## Test Reporter Integration
+
+The project uses the [dorny/test-reporter](https://github.com/dorny/test-reporter) action
+to surface Go test results in pull requests. Below is the recommended setup for
+public repositories.
+
+**.github/workflows/ci.yml**
+
+```yaml
+name: CI
+on:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: go test -json ./... > report.json
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: test-results
+          path: report.json
+```
+
+**.github/workflows/test-report.yml**
+
+```yaml
+name: Test Report
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+permissions:
+  contents: read
+  actions: read
+  checks: write
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dorny/test-reporter@v2
+        with:
+          artifact: test-results
+          name: Go Tests
+          path: report.json
+          reporter: golang-json
+```
+
+When you push new commits, the CI workflow uploads results as an artifact, and
+the Test Report workflow converts them into annotated reports on GitHub.
