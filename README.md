@@ -75,3 +75,19 @@ jobs:
 
 When you push new commits, the CI workflow uploads results as an artifact, and
 the Test Report workflow converts them into annotated reports on GitHub.
+
+## TestReporter CLI
+
+If you prefer uploading results directly from your own environment, you can use the TestReporter command-line tool.
+
+1. Install the CLI from <https://testreporter.com>.
+2. Generate a JSON test report:
+   ```sh
+   go test -json ./... > report.json
+   ```
+3. Upload the report:
+   ```sh
+   testreporter upload --file report.json --format golang-json --token <your-token>
+   ```
+   Replace `<your-token>` with the API token from your TestReporter account.
+   The CLI sends the test results to your project so they appear in the TestReporter dashboard.
