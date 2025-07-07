@@ -1,0 +1,43 @@
+syntax = "proto3";
+package lobby;
+option go_package = "upgraded-potato/pkg/lobby";
+
+message CreateLobbyRequest {
+  string host_id = 1;
+  uint32 max_players = 2;
+  bool public = 3;
+}
+
+message CreateLobbyResponse {
+  string lobby_code = 1;
+  bool success = 2;
+}
+
+message ListLobbiesRequest {}
+
+message LobbySummary {
+  string lobby_code = 1;
+  string host_id = 2;
+  uint32 players = 3;
+  uint32 max_players = 4;
+}
+
+message ListLobbiesResponse {
+  repeated LobbySummary lobbies = 1;
+}
+
+message SearchLobbiesRequest {
+  string query = 1;
+}
+
+message SearchLobbiesResponse {
+  repeated LobbySummary results = 1;
+}
+
+message BlockUserRequest {
+  string user_id = 1;
+}
+
+message BlockUserResponse {
+  bool success = 1;
+}
